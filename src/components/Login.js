@@ -1,19 +1,32 @@
 import React, { useState } from 'react';
 import Logo from "../images/logo.png";
 import {Link} from "react-router-dom";
-import {createUserWithEmailAndPassword} from "firebase/auth";
+import {createUserWithEmailAndPassword,signInWithEmailAndPassword} from "firebase/auth";
 import {auth} from "../firebase";
 import "./Login.css"
-import { useAuth } from '../context/GlobalState';
+import { useNavigate } from 'react-router-dom';
 export const Login = () => {
-  const {user} = useAuth();
   const [email,setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const navigate= useNavigate()
+  const signIn = (e)=>{
+    e.preventDefault();
+    signInWithEmailAndPassword(auth,email,password).then((auth)=>{
+      if(auth){
+        navigate("/");
+      }
+    })
+  }
   const register = (e)=>{
     e.preventDefault();
-    createUserWithEmailAndPassword(auth, email, password);
+    createUserWithEmailAndPassword(auth, email, password).then((auth)=>{
+    if(auth){
+      navigate("/")
+    }
+  }).catch((error)=>{
+    alert(error.message);
+  })
   };
-  console.log(user);
   return (
     <div className='login'>
       <Link to="/">
@@ -31,7 +44,7 @@ export const Login = () => {
           <input type="password"
           value={password}
            onChange={(e)=> setPassword(e.target.value)}/>
-          <button className='login-signInBtn' type="submit">
+          <button className='login-signInBtn' type="submit" onClick={signIn}>
             Sign in
           </button>
           <p>

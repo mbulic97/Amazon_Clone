@@ -4,7 +4,13 @@ import Logo from "../images/logo.png";
 import searchIcon from   "../images/icons/searchIcon.png";
 import shoppingCart from "../images/icons/shopping-cart.png";
 import "./Header.css"
+import { useAuth } from '../context/GlobalState';
+import {auth} from "../firebase"
 const Header = () => {
+  const {user} = useAuth();
+  const handleAuthentication = ()=>{
+    auth.signOut();
+  }
   return (
     <div className='header'>
       <Link to="/">
@@ -15,10 +21,11 @@ const Header = () => {
         <img className="header-searchIcon" src={searchIcon} alt='search-icon'/>
       </div>
       <div className='header-nav'>
-        <Link to="/login">
-          <div className='header-option'>
-            <div className='header-optionLineOne'>Hello Guest</div>
-            <div className='header-optionLineTwo'>Sign In</div>
+        <Link to={!user && "/login"}>
+          <div className='header-option' onClick={handleAuthentication}>
+            <div className='header-optionLineOne'>Hello {user? `${user.email}`: "Guest"}</div>
+            <div className='header-optionLineTwo'>
+              {user ? "Sign Out" : "Sign In"}</div>
           </div>
         </Link>
         <Link to="/orders">
