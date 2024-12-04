@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Login from "./components/Login"
 import { auth } from './firebase';
 import { useAuth } from './context/GlobalState';
+import Home from './components/Home';
 const App = () => {
   const {dispatch} = useAuth();
   useEffect(()=>{
@@ -25,7 +26,12 @@ const App = () => {
   return (
     <div className='app'>
       <Routes>
-        <Route path='/' element={<Header/>}></Route>
+        <Route path='/' element={<>
+        <Header/>
+        <Home/>
+        </>
+
+        }></Route>
         <Route path='/login' element={<Login/>}></Route>
         <Route path='*' element={<h1>Page Not Found</h1>}></Route>
       </Routes>
