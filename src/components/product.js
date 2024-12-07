@@ -3,7 +3,7 @@ import startIcon from "../images/icons/star.png"
 import "./Product.css"
 import { useAuth } from '../context/GlobalState'
 const Product = ({title,price, image,rating,id}) => {
-    const {dispatch, basket} = useAuth();
+    const {dispatch} = useAuth();
     const addtoBasket = ()=>{
         dispatch({
             type:"ADD_TO_BASKET",
@@ -16,7 +16,6 @@ const Product = ({title,price, image,rating,id}) => {
             },
         });
     };
-    console.log(basket);
   return (
     <div className='product'>
         <div className='product-info'>
