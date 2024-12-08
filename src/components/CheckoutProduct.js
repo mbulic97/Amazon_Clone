@@ -1,7 +1,15 @@
 import React from 'react'
 import startIcon from "../images/icons/star.png"
 import "./CheckoutProduct.css"
-const CheckoutProduct = ({id, image, title, price, rating, hiddenButton}) => {
+import { useAuth } from '../context/GlobalState'
+const CheckoutProduct = ({id, image, title, price, rating}) => {
+    const {dispatch} = useAuth();
+    const removeFromBasket = () =>{
+        dispatch({
+            type:"REMOVE_FROM_BASKET",
+            id: id,
+        })
+    }
   return <div className='checkoutProduct'>
     <img className='checkoutProduct-image' src={image}/>
     <div className='checkoutProduct-info'>
@@ -20,7 +28,7 @@ const CheckoutProduct = ({id, image, title, price, rating, hiddenButton}) => {
                 ))
             }
         </div>
-        <button>Remove from Basket</button>
+        <button onClick={removeFromBasket}>Remove from Basket</button>
     </div>
   </div>
 }
