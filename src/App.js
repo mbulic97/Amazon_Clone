@@ -42,7 +42,9 @@ const App = () => {
           </>
         }
           />
-        <Route path='/payment' element= {<>
+        <Route
+         path='/payment'
+        element= {<>
         <Header/>
         <Payment/>
         </>}/>

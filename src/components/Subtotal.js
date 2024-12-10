@@ -6,7 +6,7 @@ import {useNavigate} from "react-router-dom";
 import "./Subtotal.css"
 const Subtotal = () => {
     const {basket} = useAuth();
-    const navigate =  useNavigate
+    const navigate =  useNavigate()
   return (
     <div className='subtotal'>
         <CurrencyFormat renderText={(value)=>(
