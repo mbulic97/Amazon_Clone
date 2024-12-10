@@ -6,6 +6,7 @@ import { auth } from './firebase';
 import { useAuth } from './context/GlobalState';
 import Home from './components/Home';
 import Checkout from './components/Checkout';
+import Payment from './components/Payment';
 const App = () => {
   const {dispatch} = useAuth();
   useEffect(()=>{
@@ -41,6 +42,10 @@ const App = () => {
           </>
         }
           />
+        <Route path='/payment' element= {<>
+        <Header/>
+        <Payment/>
+        </>}/>
         <Route path='/login' element={<Login/>}></Route>
         <Route path='*' element={<h1>Page Not Found</h1>}></Route>
       </Routes>
