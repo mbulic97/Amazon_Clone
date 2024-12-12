@@ -4,6 +4,7 @@ import { useAuth } from '../context/GlobalState';
 import { getBasketTotal } from '../context/AppReducer';
 import CurrencyFormat from 'react-currency-format';
 import CheckoutProduct from './CheckoutProduct';
+import "./Payment.css";
 
 const Payment = () => {
   const {basket,user}= useAuth()
@@ -43,15 +44,23 @@ const Payment = () => {
         {/* Payment method*/}
         <div className='payment-section'>
           <h3>Payment Method</h3>
-          <div className='payment-priceContainer'>
-          <CurrencyFormat renderText={(value)=>
-            <h3>Order Total : {value}</h3>}
-            decimalScale={2}
-            value={getBasketTotal(basket)}
-            displayType={"text"}
-            thousandSeparator={true}
-            prefix={"$"}
-          />
+          <div className='payment-details'>
+          <form>
+            {/*Stripe Card */}
+            <div className='payment-priceContainer'>
+              <CurrencyFormat renderText={(value)=>
+                <h3>Order Total : {value}</h3>}
+                decimalScale={2}
+                value={getBasketTotal(basket)}
+                displayType={"text"}
+                thousandSeparator={true}
+                prefix={"$"}
+              />
+              <button>
+                <span>Buy Now</span>
+              </button>
+            </div>
+          </form>
           </div>
         </div>
     </div>
