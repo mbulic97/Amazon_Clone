@@ -2,7 +2,7 @@ import React from 'react'
 import startIcon from "../images/icons/star.png"
 import "./CheckoutProduct.css"
 import { useAuth } from '../context/GlobalState'
-const CheckoutProduct = ({id, image, title, price, rating}) => {
+const CheckoutProduct = ({id, image, title, price, rating,hiddenButton}) => {
     const {dispatch} = useAuth();
     const removeFromBasket = () =>{
         dispatch({
@@ -22,13 +22,15 @@ const CheckoutProduct = ({id, image, title, price, rating}) => {
             {Array(rating)
                 .fill()
                 .map((_,i)=>(
-                    <p>
+                    <p key={i}>
                         <img src={startIcon}/>
                     </p>
                 ))
             }
         </div>
-        <button onClick={removeFromBasket}>Remove from Basket</button>
+        {!hiddenButton &&(
+            <button onClick={removeFromBasket}>Remove from Basket</button>
+)}
     </div>
   </div>
 }

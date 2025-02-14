@@ -29,7 +29,7 @@ const Product = ({title,price, image,rating,id}) => {
             {Array(rating)
             .fill()
             .map((_,i)=>(
-                <p>
+                <p key={i}>
                     <img src={startIcon}/>
                 </p>
             ))
