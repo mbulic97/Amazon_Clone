@@ -11,14 +11,25 @@ export const Login = () => {
   const navigate= useNavigate()
   const signIn = (e)=>{
     e.preventDefault();
+    if(!email||!password){
+      alert("Please fill in both email and password.");
+      return;
+    }
     signInWithEmailAndPassword(auth,email,password).then((auth)=>{
       if(auth){
         navigate("/");
       }
     })
+    .catch((error) => {
+      alert(`Error: ${error.message}`);
+    });
   }
   const register = (e)=>{
     e.preventDefault();
+    if(!email||!password){
+      alert("Please fill in both email and password.");
+      return;
+    }
     createUserWithEmailAndPassword(auth, email, password).then((auth)=>{
     if(auth){
       navigate("/")
