@@ -1,9 +1,8 @@
 const functions = require("firebase-functions");
 const express = require("express");
 const cors = require("cors");
-const stripe = require("stripe")("sk_test_51QVKBKKgyXo" +
-    "RPHBYVVkIkgGxiR4pfSBuE0dpFEKCdiRJAr" +
-    "rga535MG9bo8I1rhKq496ZTOTKC7bFv9xzK2ZkegR3008Q9e5JkG");
+require('dotenv').config();
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 // App config
 const app = express();
